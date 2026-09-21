@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lười English - Bạn Cạ Cứng 3 Tháng Giao Tiếp</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf4f5',
+                            100: '#fbe8eb',
+                            500: '#e11d48',
+                            600: '#be123c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-500 flex items-center justify-center text-white shadow-md shadow-rose-500/20 text-lg">
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-base md:text-lg flex items-center gap-2">
+                        Lười English <span class="text-xs bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-400 px-2 py-0.5 rounded-full font-medium">Bản Mất Gốc</span>
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Bạn cạ cứng đồng hành 3 tháng giao tiếp</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2 md:space-x-4">
+                <div class="flex items-center space-x-1.5 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 px-3 py-1.5 rounded-full text-amber-700 dark:text-amber-400 text-xs font-semibold">
+                    <i class="fa-solid fa-bolt animate-pulse"></i>
+                    <span id="streakCount">3</span> Ngày liên tiếp
+                </div>
+                <button onclick="toggleTheme()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition" title="Đổi giao diện">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="lg:col-span-1 space-y-4">
+            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-4 shadow-sm">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3 px-2">Menu Lười</h2>
+                <nav class="space-y-1">
+                    <button onclick="switchTab('roadmap')" id="nav-roadmap" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-medium text-sm transition bg-rose-500 text-white shadow-lg shadow-rose-500/25">
+                        <i class="fa-solid fa-route w-5 text-center"></i>
+                        <span>1. Lộ trình 3 Tháng</span>
+                    </button>
+                    <button onclick="switchTab('chat')" id="nav-chat" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                        <i class="fa-solid fa-comments w-5 text-center"></i>
+                        <span>2. Phòng Chat Sửa Lỗi</span>
+                        <span class="ml-auto bg-rose-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">HOT</span>
+                    </button>
+                    <button onclick="switchTab('game')" id="nav-game" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                        <i class="fa-solid fa-gamepad w-5 text-center"></i>
+                        <span>3. Mini-Game 5 Phút</span>
+                    </button>
+                    <button onclick="switchTab('progress')" id="nav-progress" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                        <i class="fa-solid fa-chart-line w-5 text-center"></i>
+                        <span>4. Tiến Độ & Streak</span>
+                    </button>
+                    <button onclick="switchTab('deploy')" id="nav-deploy" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                        <i class="fa-solid fa-cloud-arrow-up w-5 text-center text-emerald-500"></i>
+                        <span class="text-emerald-600 dark:text-emerald-400 font-bold">5. Đưa Lên Web Miễn Phí</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Motto Card -->
+            <div class="bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl p-5 text-white shadow-xl shadow-rose-500/20 relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-15 text-7xl"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3 class="font-bold text-base mb-1">Motto hôm nay:</h3>
+                <p id="dailyMotto" class="text-xs text-rose-100 leading-relaxed italic mb-3">"Không cần hoàn hảo, cứ lắp bắp đúng phản xạ là tụi Tây hiểu rồi mày ơi!"</p>
+                <button onclick="changeMotto()" class="bg-white/20 hover:bg-white/30 text-white text-xs font-medium py-1.5 px-3 rounded-xl backdrop-blur-sm transition">Đổi câu khác</button>
+            </div>
+        </aside>
+
+        <div class="lg:col-span-3 flex flex-col">
+
+            <!-- TAB 1: ROADMAP (Lộ trình 3 tháng) -->
+            <section id="tab-roadmap" class="space-y-6">
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold">Lộ Trình Tinh Gọn 3 Tháng Cho Người Mất Gốc</h2>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Mỗi ngày 5 phút, học đúng trọng tâm giao tiếp thực tế.</p>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-slate-100 dark:bg-slate-700 p-1 rounded-2xl self-start">
+                            <button onclick="switchMonth(1)" id="btn-m1" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-600 shadow-sm">Tháng 1</button>
+                            <button onclick="switchMonth(2)" id="btn-m2" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400">Tháng 2</button>
+                            <button onclick="switchMonth(3)" id="btn-m3" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400">Tháng 3</button>
+                        </div>
+                    </div>
+
+                    <div id="monthDesc" class="bg-rose-50 dark:bg-rose-950/30 border border-rose-100 dark:border-rose-900/50 rounded-2xl p-4 text-rose-800 dark:text-rose-300 text-sm mb-6 flex items-start space-x-3">
+                        <i class="fa-solid fa-circle-info text-rose-500 mt-0.5"></i>
+                        <div>
+                            <span class="font-bold">Tháng 1: Phá băng nỗi sợ & Câu cửa miệng sinh tồn.</span> Tập trung làm quen với âm thanh, từ vựng bỏ túi và mấy câu chém gió hàng ngày không cần nhớ ngữ pháp phức tạp.
+                        </div>
+                    </div>
+
+                    <div id="weekList" class="space-y-4"></div>
+                </div>
+            </section>
+
+            <!-- TAB 2: CHAT SỬA LỖI -->
+            <section id="tab-chat" class="hidden flex flex-col h-[75vh] bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl shadow-sm overflow-hidden">
+                <div class="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm">AI</div>
+                            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-slate-800 rounded-full"></span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm">Cạ Cứng Tiếng Anh (Đóng vai bạn thân sửa lỗi)</h3>
+                            <p class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">Đang online - Gõ tiếng Anh bồi vô tư đi mày!</p>
+                        </div>
+                    </div>
+                    <button onclick="clearChat()" class="text-xs text-slate-400 hover:text-rose-500 transition px-2 py-1"><i class="fa-solid fa-rotate-right mr-1"></i> Xóa chat</button>
+                </div>
+
+                <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-4 custom-scrollbar text-sm">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center text-xs font-bold shrink-0">AI</div>
+                        <div class="bg-slate-100 dark:bg-slate-700/80 rounded-2xl rounded-tl-sm p-3.5 max-w-[80%] leading-relaxed">
+                            Ê mày! Cứ bắn tiếng Anh bồi kiểu thoải mái vào đây (Ví dụ: <i>"I go to coffee yesterday"</i> hoặc <i>"How much this?"</i>). Tao sẽ sửa lại cho mượt mà chuẩn Tây ngay lập tức mà không chê bai câu nào! 😎
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-4 py-2 border-t border-slate-100 dark:border-slate-700/50 flex gap-2 overflow-x-auto text-xs no-scrollbar">
+                    <button onclick="sendQuickPrompt('Hôm nay tao đi gọi cà phê starbucks')" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 px-3 py-1.5 rounded-full whitespace-nowrap transition">☕ Gọi cà phê</button>
+                    <button onclick="sendQuickPrompt('Sửa câu hộ tao: I go to market yesterday')" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 px-3 py-1.5 rounded-full whitespace-nowrap transition">🛠️ Sửa câu hộ tao</button>
+                    <button onclick="sendQuickPrompt('Cách nói tôi không hiểu lịch sự')" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 px-3 py-1.5 rounded-full whitespace-nowrap transition">💡 Mẫu câu sinh tồn</button>
+                </div>
+
+                <div class="p-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center space-x-2">
+                    <input type="text" id="chatInput" onkeydown="handleChatKey(event)" placeholder="Nhắn tiếng Anh bồi hoặc tiếng Việt vào đây..." class="flex-1 bg-slate-100 dark:bg-slate-700/60 border-none rounded-2xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    <button onclick="sendMessage()" class="w-11 h-11 bg-rose-500 hover:bg-rose-600 text-white rounded-2xl flex items-center justify-center transition shadow-md shadow-rose-500/20 shrink-0">
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- TAB 3: MINI GAME -->
+            <section id="tab-game" class="hidden space-y-6">
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold">Mini-Game 5 Phút Sữa Chua</h2>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Ôn từ vựng qua trắc nghiệm nhanh gọn, không đau đầu.</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Điểm số</span>
+                            <div id="gameScore" class="text-lg font-black text-rose-500">0</div>
+                        </div>
+                    </div>
+
+                    <div id="gameCardArea" class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-3xl p-8 text-center max-w-xl mx-auto space-y-6">
+                        <div class="inline-block bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 text-xs font-bold px-3 py-1 rounded-full">
+                            Câu hỏi <span id="currentQuestionNum">1</span> / 5
+                        </div>
+                        <div id="gameQuestion" class="text-2xl font-bold text-slate-800 dark:text-slate-100">
+                            "Procrastinate" nghĩa là gì hả mày?
+                        </div>
+                        <div id="gameOptions" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                    </div>
+
+                    <div id="gameResultArea" class="hidden text-center max-w-md mx-auto py-8 space-y-4">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto shadow-lg shadow-emerald-500/10">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Hoàn thành thử thách 5 phút!</h3>
+                        <p id="gameFinalScoreText" class="text-sm text-slate-500 dark:text-slate-400">Quá đỉnh cho một người lười!</p>
+                        <button onclick="resetGame()" class="bg-rose-500 hover:bg-rose-600 text-white font-medium px-6 py-3 rounded-2xl transition shadow-lg shadow-rose-500/20 text-sm">Chơi lại trận nữa</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: TIẾN ĐỘ & STREAK -->
+            <section id="tab-progress" class="hidden space-y-6">
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm">
+                    <h2 class="text-xl font-bold mb-1">Bảng Theo Dõi Tiến Độ & Streak Học Tập</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Nhìn streak tăng đều mỗi ngày để lấy động lực chiến tiếp.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 p-5 rounded-2xl flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-rose-100 dark:bg-rose-950/60 text-rose-500 rounded-2xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-check-to-slot"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Tuần hoàn thành</div>
+                                <div class="text-xl font-black">2 / 12 Tuần</div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 p-5 rounded-2xl flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-950/60 text-amber-500 rounded-2xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-fire"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Chuỗi Streak</div>
+                                <div class="text-xl font-black">3 Ngày</div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 p-5 rounded-2xl flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-950/60 text-indigo-500 rounded-2xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Từ vựng bỏ túi</div>
+                                <div class="text-xl font-black">24 Từ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 p-5 rounded-2xl space-y-3">
+                        <div class="flex justify-between text-sm font-semibold">
+                            <span>Tiến độ toàn bộ 3 tháng</span>
+                            <span class="text-rose-500 font-bold">16%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-700 h-3 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-rose-500 to-pink-500 h-full w-[16%] rounded-full"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 italic">"Cứ đi chậm còn hơn đứng yên. Mày đang làm rất tốt rồi đó!"</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: HƯỚNG DẪN ĐƯA LÊN MẠNG MIỄN PHÍ -->
+            <section id="tab-deploy" class="hidden space-y-6">
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 text-xs font-bold px-3 py-1 rounded-full mb-3">
+                            <i class="fa-solid fa-globe"></i> Hoàn Toàn Miễn Phí 100%
+                        </div>
+                        <h2 class="text-2xl font-bold">Cách Đưa Website "Lười English" Lên Mạng Để Dùng Mọi Lúc Mọi Nơi</h2>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Chỉ mất chưa đầy 3 phút với 2 cách cực kỳ đơn giản dưới đây.</p>
+                    </div>
+
+                    <!-- Option 1: Netlify Drop -->
+                    <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-6 space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-600 flex items-center justify-center font-bold text-lg">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base">Cách 1: Nhanh nhất quả đất với Netlify Drop (Không cần code)</h3>
+                                <p class="text-xs text-slate-500">Thích hợp nếu mày muốn có link truy cập ngay trong 10 giây.</p>
+                            </div>
+                        </div>
+                        <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 pl-2">
+                            <li>Lưu toàn bộ code của trang này thành một file tên là <code class="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded text-rose-500 font-mono">index.html</code>.</li>
+                            <li>Truy cập trang web miễn phí: <a href="https://app.netlify.com/drop" target="_blank" class="text-rose-500 underline font-semibold">app.netlify.com/drop</a></li>
+                            <li>Kéo thả file <code class="font-mono">index.html</code> của mày vào khung trên trang web đó.</li>
+                            <li>Netlify sẽ ngay lập tức tạo cho mày một đường link web riêng (ví dụ: <code class="text-xs text-indigo-500">luoi-english.netlify.app</code>). Xong!</li>
+                        </ol>
+                    </div>
+
+                    <!-- Option 2: GitHub Pages -->
+                    <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-6 space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center font-bold text-lg">
+                                <i class="fa-brands fa-github"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base">Cách 2: Lâu dài & chuyên nghiệp với GitHub Pages</h3>
+                                <p class="text-xs text-slate-500">Dành cho việc lưu trữ lâu năm không sợ mất link.</p>
+                            </div>
+                        </div>
+                        <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 pl-2">
+                            <li>Tạo một tài khoản miễn phí trên <a href="https://github.com" target="_blank" class="text-rose-500 underline font-semibold">GitHub.com</a>.</li>
+                            <li>Tạo một Repository mới (đặt tên ví dụ là <code class="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded text-rose-500 font-mono">luoi-english</code>), chọn chế độ <strong>Public</strong>.</li>
+                            <li>Tải file <code class="font-mono">index.html</code> lên repository đó.</li>
+                            <li>Vào phần <strong>Settings</strong> -> <strong>Pages</strong> -> ở mục Build and deployment chọn nguồn là <strong>main branch</strong> rồi bấm Save.</li>
+                            <li>Sau 1 phút, GitHub sẽ cấp cho mày link web dạng: <code class="text-xs text-indigo-500">username.github.io/luoi-english</code>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // --- Theme Toggle ---
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        // --- Navigation Tabs ---
+        function switchTab(tabId) {
+            const tabs = ['roadmap', 'chat', 'game', 'progress', 'deploy'];
+            tabs.forEach(t => {
+                document.getElementById('tab-' + t).classList.add('hidden');
+                const navBtn = document.getElementById('nav-' + t);
+                navBtn.className = "w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-medium text-sm transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700";
+            });
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('nav-' + tabId);
+            activeBtn.className = "w-full flex items-center space-x-3 px-3.5 py-3 rounded-2xl font-medium text-sm transition bg-rose-500 text-white shadow-lg shadow-rose-500/25";
+        }
+
+        // --- Motto Rotator ---
+        const mottos = [
+            "Không cần hoàn hảo, cứ lắp bắp đúng phản xạ là tụi Tây hiểu rồi mày ơi!",
+            "Học tiếng Anh cũng như ăn phở, húp từ từ mới thấm vị.",
+            "Lười thì lười nhưng mỗi ngày 5 phút là đủ để không bị tụt hậu.",
+            "Sai ngữ pháp thì Tây nó vẫn cười thân thiện, đừng sợ ngại!"
+        ];
+        function changeMotto() {
+            const randomMotto = mottos[Math.floor(Math.random() * mottos.length)];
+            document.getElementById('dailyMotto').innerText = `"${randomMotto}"`;
+        }
+
+        // --- Roadmap Data ---
+        const roadmapData = {
+            1: {
+                title: "Tháng 1: Phá băng nỗi sợ & Câu cửa miệng sinh tồn",
+                desc: "Tập trung làm quen với âm thanh, từ vựng bỏ túi và mấy câu chém gió hàng ngày không cần nhớ ngữ pháp phức tạp.",
+                weeks: [
+                    { week: 1, title: "Làm quen phát âm chuẩn & Mấy câu chào hỏi xã giao", status: "completed", desc: "Học cách nói Hello, Thank you, How are you chuẩn giọng bản xứ." },
+                    { week: 2, title: "Gọi món ăn uống & Mua sắm (Đi siêu thị, quán cafe)", status: "completed", desc: "Học cách dùng 'I'd like...', 'Can I have...', 'How much is this?'." },
+                    { week: 3, title: "Hỏi đường & Chỉ dẫn khi đi lạc", status: "active", desc: "Học các từ vựng trái phải, rẽ đâu, tìm chỗ vệ sinh công cộng." },
+                    { week: 4, title: "Tự giới thiệu bản thân siêu ngắn gọn", status: "locked", desc: "Nói tên, nghề nghiệp, sở thích cá nhân trong 3 câu đơn giản." }
+                ]
+            },
+            2: {
+                title: "Tháng 2: Phản xạ giao tiếp tình huống thực tế",
+                desc: "Bắt đầu tự tin bật mí câu trả lời trong các tình huống công việc nhẹ nhàng hoặc tán gẫu.",
+                weeks: [
+                    { week: 5, title: "Kể chuyện hôm qua tao đã làm gì (Thì quá khứ đơn)", status: "locked", desc: "Dùng các từ như yesterday, last night kèm động từ thêm ed." },
+                    { week: 6, title: "Hẹn hò, rủ rê bạn bè đi chơi cuối tuần", status: "locked", desc: "Mẫu câu 'Are you free tonight?', 'Let's grab a beer!'." },
+                    { week: 7, title: "Xử lý sự cố khi đi du lịch / máy bay", status: "locked", desc: "Mất hành lý, đổi vé máy bay, check-in khách sạn." },
+                    { week: 8, title: "Nói về sở thích và ghét cái gì", status: "locked", desc: "'I love...', 'I hate...', 'My favorite is...'." }
+                ]
+            },
+            3: {
+                title: "Tháng 3: Bắn tiếng Anh bồi mượt như gió",
+                desc: "Hoàn thiện phản xạ, tự tin nói chuyện không cần suy nghĩ bằng tiếng Việt dịch sang tiếng Anh.",
+                weeks: [
+                    { week: 9, title: "Thảo luận công việc & Họp hành cơ bản", status: "locked", desc: "'I agree with you', 'In my opinion', 'Let's move on'." },
+                    { week: 10, title: "Đàm phán giá cả & Mặc cả khi mua hàng", status: "locked", desc: "'Can you give me a discount?', 'Too expensive!'." },
+                    { week: 11, title: "Bày tỏ cảm xúc: Vui, buồn, tức giận", status: "locked", desc: "'I'm exhausted', 'Awesome!', 'What a pity!'." },
+                    { week: 12, title: "Tổng kết & Giao lưu thực chiến 1-1", status: "locked", desc: "Tự tin bắn một đoạn hội thoại 2 phút hoàn chỉnh." }
+                ]
+            }
+        };
+
+        let currentMonth = 1;
+        function switchMonth(m) {
+            currentMonth = m;
+            for(let i=1; i<=3; i++) {
+                const btn = document.getElementById('btn-m' + i);
+                if(i === m) {
+                    btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-600 shadow-sm";
+                } else {
+                    btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400";
+                }
+            }
+            renderRoadmap();
+        }
+
+        function renderRoadmap() {
+            const data = roadmapData[currentMonth];
+            document.getElementById('monthDesc').innerHTML = `<i class="fa-solid fa-circle-info text-rose-500 mt-0.5 shrink-0"></i><div><span class="font-bold">${data.title}.</span> ${data.desc}</div>`;
+            
+            let html = '';
+            data.weeks.forEach(w => {
+                let badgeColor = "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300";
+                let badgeText = "Chưa học";
+                let icon = "fa-lock";
+                if(w.status === 'completed') {
+                    badgeColor = "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400";
+                    badgeText = "Đã xong";
+                    icon = "fa-check";
+                } else if(w.status === 'active') {
+                    badgeColor = "bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400";
+                    badgeText = "Đang học";
+                    icon = "fa-play";
+                }
+
+                html += `
+                    <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/70 p-4 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-500 font-bold flex items-center justify-center shrink-0">
+                                W${w.week}
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">${w.title}</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">${w.desc}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 self-end md:self-center">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full ${badgeColor}">
+                                <i class="fa-solid ${icon} mr-1"></i> ${badgeText}
+                            </span>
+                            <button onclick="alert('Đã mở bài học Tuần ${w.week}! Chúc mày học vui vẻ nhé.')" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-rose-500 text-xs font-medium px-3.5 py-2 rounded-xl transition shadow-sm">
+                                Vào học ngay
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('weekList').innerHTML = html;
+        }
+        renderRoadmap();
+
+        // --- Chat & Sửa Lỗi ---
+        function sendQuickPrompt(text) {
+            document.getElementById('chatInput').value = text;
+            sendMessage();
+        }
+
+        function handleChatKey(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML += `
+                <div class="flex items-start space-x-3 justify-end">
+                    <div class="bg-rose-500 text-white rounded-2xl rounded-tr-sm p-3.5 max-w-[80%] leading-relaxed shadow-sm">
+                        ${escapeHtml(msg)}
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs font-bold shrink-0">Mày</div>
+                </div>
+            `;
+            input.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                let aiReply = generateAIBuddyResponse(msg);
+                chatMessages.innerHTML += `
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center text-xs font-bold shrink-0">AI</div>
+                        <div class="bg-slate-100 dark:bg-slate-700/80 rounded-2xl rounded-tl-sm p-3.5 max-w-[80%] leading-relaxed space-y-2">
+                            <div>${aiReply.text}</div>
+                            ${aiReply.correction ? `<div class="bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 p-2.5 rounded-xl text-xs">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> <strong>Sửa lỗi xíu cho mượt:</strong> ${aiReply.correction}
+                            </div>` : ''}
+                        </div>
+                    </div>
+                `;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 800);
+        }
+
+        function generateAIBuddyResponse(userText) {
+            const lower = userText.toLowerCase();
+            if(lower.includes('coffee') || lower.includes('cà phê')) {
+                return {
+                    text: "Đi gọi cà phê hả bro! Câu chuẩn bài tụi Tây hay dùng là: <em>'I'd like an iced americano, please.'</em> (Cho tao một ly americano đá nhé). Ngắn gọn, lịch sự!",
+                    correction: "Thay vì nói 'I want coffee', dùng <strong>'I would like...'</strong> nghe sang và lịch sự hơn hẳn mày nhé!"
+                };
+            } else if(lower.includes('yesterday') || lower.includes('hôm qua') || lower.includes('go to market')) {
+                return {
+                    text: "Ê câu này suýt chuẩn rồi đấy! Nhớ là kể chuyện hôm qua thì động từ phải chia thì quá khứ nha.",
+                    correction: "Sửa thành: <strong>'I went to the market yesterday'</strong> (go thành went)."
+                };
+            } else {
+                return {
+                    text: `Tao hiểu ý mày rồi! Khi nói câu này trong đời thực, Tây nó sẽ đáp lại là: <em>"Sounds great! Tell me more."</em> Cố gắng phát huy phản xạ nhanh thế này nhé!`,
+                    correction: "Không có lỗi ngữ pháp nặng đâu, cứ tự tin bắn tiếp đi mày!"
+                };
+            }
+        }
+
+        function clearChat() {
+            document.getElementById('chatMessages').innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center text-xs font-bold shrink-0">AI</div>
+                    <div class="bg-slate-100 dark:bg-slate-700/80 rounded-2xl rounded-tl-sm p-3.5 max-w-[80%] leading-relaxed">
+                        Đã làm sạch bảng chat! Hỏi lại tao câu khác đi mày ơi. 😎
+                    </div>
+                </div>
+            `;
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        // --- Mini Game ---
+        const quizData = [
+            {
+                q: '"Procrastinate" nghĩa là gì hả mày?',
+                options: ["Trì hoãn, nước đến chân mới nhảy", "Chăm chỉ làm việc", "Ăn uống thỏa thích", "Đi ngủ sớm"],
+                correct: 0
+            },
+            {
+                q: 'Chọn câu mua cà phê chuẩn nhất:',
+                options: ["I want coffee now!", "Give me coffee!", "I'd like a latte, please.", "Coffee give me."],
+                correct: 2
+            },
+            {
+                q: 'Quá khứ của từ "go" là gì?',
+                options: ["goed", "went", "gone", "going"],
+                correct: 1
+            },
+            {
+                q: 'Khi ai đó cảm ơn, câu đáp lại nào ngắn gọn nhất?',
+                options: ["You are welcome very much", "No problem / Anytime", "I do not accept", "Thank you too"],
+                correct: 1
+            },
+            {
+                q: '"My treat" nghĩa là gì trong tiếng Anh giao tiếp?',
+                options: ["Để tao điều trị", "Để tao bao / đãi", "Của tao bị hỏng", "Mời bạn về nhà"],
+                correct: 1
+            }
+        ];
+
+        let currentQIdx = 0;
+        let score = 0;
+
+        function loadQuiz() {
+            if(currentQIdx >= quizData.length) {
+                document.getElementById('gameCardArea').classList.add('hidden');
+                document.getElementById('gameResultArea').classList.remove('hidden');
+                document.getElementById('gameFinalScoreText').innerText = `Mày trả lời đúng ${score/10}/5 câu. Quá đỉnh cho một người lười!`;
+                return;
+            }
+
+            const q = quizData[currentQIdx];
+            document.getElementById('currentQuestionNum').innerText = currentQIdx + 1;
+            document.getElementById('gameQuestion').innerText = q.q;
+
+            let optHtml = '';
+            q.options.forEach((opt, idx) => {
+                optHtml += `<button onclick="checkAnswer(${idx})" class="bg-white dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 p-4 rounded-2xl font-medium text-sm transition text-left shadow-sm">${opt}</button>`;
+            });
+            document.getElementById('gameOptions').innerHTML = optHtml;
+        }
+
+        function checkAnswer(selectedIdx) {
+            const q = quizData[currentQIdx];
+            if(selectedIdx === q.correct) {
+                score += 10;
+                document.getElementById('gameScore').innerText = score;
+            }
+            currentQIdx++;
+            loadQuiz();
+        }
+
+        function resetGame() {
+            currentQIdx = 0;
+            score = 0;
+            document.getElementById('gameScore').innerText = score;
+            document.getElementById('gameCardArea').classList.remove('hidden');
+            document.getElementById('gameResultArea').classList.add('hidden');
+            loadQuiz();
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
